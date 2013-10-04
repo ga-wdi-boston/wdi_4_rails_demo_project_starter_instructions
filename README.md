@@ -144,7 +144,7 @@ end
 
 Run `bundle exec guard --clear` 
 
-## Dotenv
+## [Dotenv](https://github.com/bkeepers/dotenv)
 
 Create a `.env` file by typing `touch .env`. This file will hold your local environment variables for storing API keys and such. Make sure this file is added to your `.gitignore`
 
