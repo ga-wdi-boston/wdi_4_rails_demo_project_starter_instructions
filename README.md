@@ -19,6 +19,7 @@ After adding *any* gem to your Gemfile, you must run `bundle install`.
 Add any files that you wouldn't want in your git repo. Below is a common set:
 
 ```
+.env
 *.gem
 *.rbc
 .bundle
@@ -64,7 +65,7 @@ Run
 
 Create a `spec/FOO_spec.rb` file with `touch spec/FOO_spec.rb` and start it with the following lines:
 
-```
+```ruby
 require 'spec_helper'
 require_relative '../lib/FOO.rb'
 
@@ -105,7 +106,7 @@ Once we're using Rails, we'll put in the following instead:
 
 At the top of you `spec/spec_helper.rb` add the following code before anything else: 
 
-```
+```ruby
 require 'json'
 require 'simplecov'
 SimpleCov.start
@@ -121,6 +122,8 @@ Add Pry to your Gemfile
 
 Run `pry` from the bash prompt. 
 
+Add `require 'pry'` to the top of your program if you wish to use it for in-line execution testing. 
+
 Insert `binding.pry` at any point in your code to halt execution when that is reached. Exit pry by typing `quit` and completely stop the program with `exit-program`. 
 
 ## [guard](https://github.com/guard/guard)
@@ -131,7 +134,7 @@ Add Guard to your Gemfile
 
 Create a Guardfile with `touch Guardfile` and add the following to it: 
 
-```
+```ruby
 guard :rspec do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})    { |m| "spec/#{m[1]}_spec.rb" }
@@ -141,4 +144,25 @@ end
 
 Run `bundle exec guard --clear` 
 
+## Dotenv
 
+Create a `.env` file by typing `touch .env`. This file will hold your local environment variables for storing API keys and such. Make sure this file is added to your `.gitignore`
+
+The format of this file will be: 
+
+```ruby
+API_KEY=9i9i8u8uy8u9
+```
+
+In your program, add the following near the top:
+
+```ruby
+require 'dotenv'
+Dotenv.load
+```
+
+Now whatever you set in your `.env` file is available in your `ENV` constant hash. 
+
+```ruby
+ENV["API_KEY"]
+```
