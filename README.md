@@ -127,7 +127,7 @@ Insert `binding.pry` at any point in your code to halt execution when that is re
 
 Add Guard to your Gemfile
 
-`gem 'guard'`
+`gem 'guard-rspec'`
 
 Create a Guardfile with `touch Guardfile` and add the following to it: 
 
